@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<h1>To-Do</h1>
+</head>
+<body>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+	body {
+		margin: 0 px;
+		font-family: Arial,Helvetica;
+	}
+
+	.navigation{
+		overflow: hidden;
+		background-color: #333;
+	}
+
+	.navigation a{
+		float: left;
+  		color: #f2f2f2;
+  		text-align: center;
+  		padding: 14px 16px;
+  		text-decoration: none;
+  		font-size: 17px;
+  	}
+  	.navigation a:hover{
+
+  		background-color: #ddd;
+  		color: black;
+	}
+	.navigation a.active {
+  		background-color: #4CAF50;
+  		color: white;
+	}
+	.button {
+		background-color: #4CAF50; /* Green */
+  		border: none;
+  		color: white;
+  		padding: 12px 12px;
+  		text-align: center;
+  		text-decoration: none;
+  		display: inline-block;
+ 		margin: 4px 0px;
+  		cursor: pointer;
+  		font-size: 14px;
+  		border-radius: 12px;
+  	}
+	table {
+  		font-family: arial, sans-serif;
+  		border-collapse: collapse;
+  		width: 50%;
+  		padding: 10px 2px;
+  		margin: 20px 5px;
+	}
+	td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 8px;
+	}
+
+	tr:nth-child(even) {
+  		background-color: #dddddd;
+	}
+</style>
+
+<div class="navigation">
+		<a href="http://127.0.0.1:8000/to_do/">Home</a>
+		<a class="active">Completed<a/>
+</div>
+<div>
+	<table>
+		<tr>
+			<th>Task</th>
+			<th>Time</th>
+		</tr>
+
+		{% for task in latest_task_list %}
+			{% if task.status %}
+			<tr>
+				<td><input type="checkbox" id="task{{ forloop.counter }}" name="task" value="{{task.id}}">
+				<label for="task{{ forloop.counter }}">{{ task.task_text}}</td></label>
+				<td>{{task.due_date}}</td>
+			</tr>
+			{% endif %}
+		{% endfor %}	
+	</table>
+	<a class="button" onclick="alert('Under Construction')">Mark Incomplete</a>
+</div>
+</body>
+</html>
