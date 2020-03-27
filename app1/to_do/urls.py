@@ -10,4 +10,6 @@ urlpatterns = [
 	path('completed/', views.completed, name = 'completed'),
 
 	path('newtask/', views.newtask, name='newtask'),
+
+	path('<int:task_id>/change/', views.change, name='change')
 ]

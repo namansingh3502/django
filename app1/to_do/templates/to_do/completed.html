@@ -46,6 +46,19 @@
   		font-size: 14px;
   		border-radius: 12px;
   	}
+  	.change {
+  		background-color: #4CAF50; /* Green */
+  		border: none;
+  		color: white;
+  		padding: 6px 6px;
+  		text-align: center;
+  		text-decoration: none;
+  		display: inline-block;
+ 		margin: 4px 0px;
+  		cursor: pointer;
+  		font-size: 12px;
+  		border-radius: 12px;
+  	}
 	table {
   		font-family: arial, sans-serif;
   		border-collapse: collapse;
@@ -73,19 +86,20 @@
 		<tr>
 			<th>Task</th>
 			<th>Time</th>
+			<th></th>
 		</tr>
 
 		{% for task in latest_task_list %}
 			{% if task.status %}
 			<tr>
-				<td><input type="checkbox" id="task{{ forloop.counter }}" name="task" value="{{task.id}}">
-				<label for="task{{ forloop.counter }}">{{ task.task_text}}</td></label>
+				<td>{{ task.task_text}}</td>
 				<td>{{task.due_date}}</td>
+        		<td><a class="change" href="{% url 'todo:change' task.id %}">Mark Incomplete</a></td>
+
 			</tr>
 			{% endif %}
 		{% endfor %}	
 	</table>
-	<a class="button" onclick="alert('Under Construction')">Mark Incomplete</a>
 </div>
 </body>
 </html>

@@ -1,155 +1,154 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<h1>To-Do</h1>
+  <h1>To-Do</h1>
 </head>
 <body>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-	body {
-		margin: 0 px;
-		font-family: Arial,Helvetica;
-	}
+  body {
+    margin: 0 px;
+    font-family: Arial,Helvetica;
+  }
 
-	.navigation{
-		overflow: hidden;
-		background-color: #333;
-	}
+  .navigation{
+    overflow: hidden;
+    background-color: #333;
+  }
 
-	.navigation a{
-		float: left;
-  		color: #f2f2f2;
-  		text-align: center;
-  		padding: 14px 16px;
-  		text-decoration: none;
-  		font-size: 17px;
-  		cursor: pointer;
+  .navigation a{
+    float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+      cursor: pointer;
 
-  	}
-  	.navigation a:hover{
+    }
+    .navigation a:hover{
 
-  		background-color: #ddd;
-  		color: black;
-	}
-	.navigation a.active {
-  		background-color: #4CAF50;
-  		color: white;
-	}
-	.form-popup {
-  		display: none;
-  		position: center;
-  		border: 3px solid #f1f1f1;
-  		z-index: 9;
-	}
-	.form-container{
-		max-width: 300px;
-  		padding: 10px;
-  		background-color: white;
-	}
-	.button {
-		background-color: #4CAF50; /* Green */
-  		border: none;
-  		color: white;
-  		padding: 12px 12px;
-  		text-align: center;
-  		text-decoration: none;
-  		display: inline-block;
- 		margin: 4px 0px;
-  		cursor: pointer;
-  		font-size: 14px;
-  		border-radius: 12px;
-  	}
-	.open-button {
-  		background-color: #4CAF50; /* Green */
-  		border: none;
-  		color: white;
-  		padding: 12px 12px;
-  		text-align: center;
-  		text-decoration: none;
-  		display: inline-block;
- 		margin: 4px 0px;
-  		cursor: pointer;
-  		font-size: 14px;
-  		border-radius: 12px;
-	}
+      background-color: #ddd;
+      color: black;
+  }
+  .navigation a.active {
+      background-color: #4CAF50;
+      color: white;
+  }
+  .form-popup {
+      display: none;
+      position: center;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+  }
+  .form-container{
+    max-width: 300px;
+      padding: 10px;
+      background-color: white;
+  }
+  .button {
+    background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 12px 12px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    margin: 4px 0px;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 12px;
+    }
+  .open-button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 12px 12px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    margin: 4px 0px;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 12px;
+  }
 
-	.form-container .btn {
- 		background-color: #4CAF50; /* Green */
-  		border: none;
-  		color: white;
-  		padding: 12px 12px;
-  		text-align: center;
-  		text-decoration: none;
-  		display: inline-block;
- 		margin: 4px 0px;
-  		cursor: pointer;
-  		font-size: 14px;
-  		border-radius: 12px;
-	}
-	.form-container .cancel {
- 		background-color: red;
-	}
-	.form-container .btn:hover, .open-button:hover {
-  		opacity: 1;
-	}
-	table {
-  		font-family: arial, sans-serif;
-  		border-collapse: collapse;
-  		width: 50%;
-  		padding: 10px 2px;
-  		margin: 20px 5px;
-	}
-	td, th {
-  		border: 1px solid #dddddd;
-  		text-align: left;
-  		padding: 8px;
-	}
+  .form-container .btn {
+    background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 12px 12px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    margin: 4px 0px;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 12px;
+  }
+  .form-container .cancel {
+    background-color: red;
+  }
+  .form-container .btn:hover, .open-button:hover {
+      opacity: 1;
+  }
+  table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 50%;
+      padding: 10px 2px;
+      margin: 20px 5px;
+  }
+  td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+  }
 
-	tr:nth-child(even) {
-  		background-color: #dddddd;
-	}
+  tr:nth-child(even) {
+      background-color: #dddddd;
+  }
 
 </style>
 <div class="navigation">
-	<a class="active">Home</a>
-	<a href="completed/">Completed<a/>
+  <a class="active">Home</a>
+  <a href="completed/">Completed<a/>
 </div>
 
 <button class="open-button" onclick="openForm()">Add Task</button>
 <div class="form-popup" id="New task">
-	<form action="{% url 'todo:newtask' %}" class="form-container" method="post">
-		<h2>Add New Task</h2>
-		{% csrf_token %}
+  <form action="{% url 'todo:newtask' %}" class="form-container" method="post">
+    <h2>Add New Task</h2>
+      {% csrf_token %}
+      
+      <input type="text" placeholder="Enter Task" name="task" required>
 
-		<label for="task"></label>
-    	<input type="text" placeholder="Enter Task" name="task" required>
-
-		<button type="submit" class="btn">Add</button>
-    	<button type="button" class="btn cancel" onclick="closeForm()">Close</button>		
-	
-	</form>
-	
+      <button type="submit" class="btn">Add</button>
+      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>   
+  
+  </form>
+  
 </div>
 
 <div>
-	<table>
-		<tr>
-			<th>Task</th>
-			<th>Time</th>
-		</tr>
+  <table>
+    <tr>
+      <th>Task</th>
+      <th>Time</th>
+    </tr>
 
-		{% for task in latest_task_list %}
-			{% if task.status %}
-			{% else%}
-			<tr>
-				<td><input type="checkbox" id="task{{ forloop.counter }}" name="task" value="{{choice.id}}">
-				<label for="task{{ forloop.counter }}">{{ task.task_text}}</td></label>
-				<td>{{task.due_date}}</td>
-			</tr>
-			{% endif %}
-		{% endfor %}	
-	</table>
-	<a class="button" onclick="alert('Under Construction')">Complete</a>
+    {% for task in latest_task_list %}
+      {% if task.status %}
+      {% else%}
+      <tr>
+        <td><input type="checkbox" id="task{{ forloop.counter }}" name="task" value="{{choice.id}}">
+        <label for="task{{ forloop.counter }}">{{ task.task_text}}</td></label>
+        <td>{{task.due_date}}</td>
+      </tr>
+      {% endif %}
+    {% endfor %}  
+  </table>
+  <a class="button" onclick="alert('Under Construction')">Complete</a>
 </div>
 
 <script>
