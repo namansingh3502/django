@@ -73,7 +73,7 @@
       border-radius: 12px;
   }
 
-  .form-container .btn {
+  .form-container .btn, .change {
     background-color: #4CAF50; /* Green */
       border: none;
       color: white;
@@ -117,41 +117,57 @@
 
 <button class="open-button" onclick="openForm()">Add Task</button>
 <div class="form-popup" id="New task">
-  <form action="{% url 'todo:newtask' %}" class="form-container" method="post">
+
+  <form action="newtask/" method="POST" class="form-container" >
     <h2>Add New Task</h2>
       {% csrf_token %}
       
-      <input type="text" placeholder="Enter Task" name="task" required>
+      <input id="text" type="text" placeholder="Enter Task" name="task" required/><br>
+      <input id="date" type="date" name="date">  
+      <input id='time' type="time" name="time"><br><br>
 
-      <button type="submit" class="btn">Add</button>
+
+      <button type="submit" class="btn" value="Post"/>Add</button>
       <button type="button" class="btn cancel" onclick="closeForm()">Close</button>   
   
   </form>
   
 </div>
 
-<div>
+<div class="task_table">
   <table>
     <tr>
       <th>Task</th>
       <th>Time</th>
+      <th></th>
     </tr>
 
     {% for task in latest_task_list %}
       {% if task.status %}
-      {% else%}
+      {% else %}
       <tr>
-        <td><input type="checkbox" id="task{{ forloop.counter }}" name="task" value="{{choice.id}}">
-        <label for="task{{ forloop.counter }}">{{ task.task_text}}</td></label>
+        <td>{{task.task_text}}</td>
         <td>{{task.due_date}}</td>
+        <td><a class="change" href="{% url 'todo:change' task.id  %}">Completed</a></td>
       </tr>
       {% endif %}
     {% endfor %}  
   </table>
-  <a class="button" onclick="alert('Under Construction')">Complete</a>
 </div>
 
 <script>
+let data = {
+  text:document.getElementByid('text'),
+  data:document.getElementByid('date'),
+  time:document.getElementByid('time'),
+  csrfmiddlewaretoken: '{{ csrf_token }}'
+};
+
+fetch("newtask/", {
+  method: "POST", 
+  body: JSON.stringify(data)
+});
+
 function openForm() {
   document.getElementById("New task").style.display = "block";
 }
