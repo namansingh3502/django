@@ -22,7 +22,6 @@ def completed(request):
 	return HttpResponse(template.render(context, request))
 
 def newtask(request):
-	print(request.POST.get('task') + " " + request.POST.get('date')+" "+ request.POST.get('time'))
 	if request.method == 'POST':
 		if request.POST.get('task') and request.POST.get('date'):
 			date=request.POST.get('date')
