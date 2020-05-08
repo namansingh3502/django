@@ -1,10 +1,11 @@
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render,get_object_or_404
 from django.template import loader
-from .models import Task
+from .models import 
 from django.urls import reverse
 from datetime import datetime
 from django.utils.dateparse import parse_datetime
+
 def home(request):
 	latest_task_list = Task.objects.order_by('due_date')
 	template = loader.get_template('to_do/home.html')
