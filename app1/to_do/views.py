@@ -1,10 +1,15 @@
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render,get_object_or_404
 from django.template import loader
-from .models import 
+from .models import User
 from django.urls import reverse
 from datetime import datetime
 from django.utils.dateparse import parse_datetime
+
+def login(request):
+	template = loader.get_template('to_do/login.html')
+	return HttpResponse(template.render({},request))
+
 
 def home(request):
 	latest_task_list = Task.objects.order_by('due_date')
