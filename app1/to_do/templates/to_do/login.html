@@ -99,7 +99,7 @@
       		<label for="psw"><b>Password</b></label>
       		<input type="password" placeholder="Enter Password" name="psw" required>
         
-      		<button type="submit">Login</button>
+      		<button type="submit" onclick=send()>Login</button>
       			
     	</div>
 
@@ -118,7 +118,7 @@
 	csrfmiddlewaretoken: '{{ csrf_token }}'
 	};
 	
-	function send(){
+	function send(data){
 		fetch("newtask/", {
   		method: "POST", 
   		body: JSON.stringify(data)
