@@ -87,19 +87,18 @@
 
 	<div>
 			
-		<form class="modal-content animate" method="post">			
-		<div>
-		</div>
+		<!-- <form class="modal-content animate" method="post">			
+		-->
 		
 		<div class="container">
 			{% csrf_token %}
       		<label for="uname"><b>Username</b></label>
-      		<input id="user" type="text" placeholder="Enter Username" name="uname" required>
+      		<input id="user" type="text" placeholder="Enter Username" name="username" required>
 
       		<label for="psw"><b>Password</b></label>
-      		<input type="password" placeholder="Enter Password" name="psw" required>
+      		<input id="password" type="password" placeholder="Enter Password" name="password" required>
         
-      		<button type="submit" onclick=send()>Login</button>
+      		<button type="submit" onclick="send()">Login</button>
       			
     	</div>
 
@@ -113,11 +112,14 @@
 
 <script type="text/javascript">
 	let data = {
-  	user:document.getElementByid('user'),
-  	pass:document.getElementByid('date'),
-	csrfmiddlewaretoken: '{{ csrf_token }}'
+  	username:document.getElementByid('username').value,
+  	password:document.getElementByid('password').value,
+    csrfmiddlewaretoken: '{{ csrf_token }}'
 	};
 	
+  
+  //var myJSON = JSON.stringify(myObj);
+  //window.location = "demo_json.php?x=" + myJSON;
 	function send(data){
 		fetch("newtask/", {
   		method: "POST", 
@@ -135,6 +137,9 @@
     });
 
 </script>
+
+
+
 
 
 
