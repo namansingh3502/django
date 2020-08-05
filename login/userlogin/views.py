@@ -7,7 +7,6 @@ from .forms import UserPass,NewUser
 def signin( request ):
 
 	if request.method == 'POST':
-
 		form = UserPass( request.POST )
 
 		if form.is_valid():
@@ -20,26 +19,31 @@ def signin( request ):
 				cred = Userdata.objects.filter( username = user )
 
 				if cred[0].password == user_pass:
-					return HttpResponseRedirect(reverse('userlogin:signin'))
+					return HttpResponse( "Succesfully logged In " )
 			
-		return HttpResponse(False)
-
+			
+			form = UserPass()
+			return render(request, 'userlogin/signin2.html', {'form': form})
+	
 	else:
 		form = UserPass()
+		return render(request, 'userlogin/signin.html', {'form': form})
 
-	return render(request, 'userlogin/signin.html', {'form': form})
 
 def signup( request ):
 
 	if request.method == 'POST':
-		form = NewUser(request.POST)
+		form = NewUser( request.POST )
 		
 		if form.is_valid():
 
 			user = request.POST.get('username')
-			print( user )
+
+			if Userdata.objects.filter( username = user ).exists():
+				return render(request, 'userlogin/signup2.html', {'form': form})
 
 			cred=Userdata()
+
 			cred.name = request.POST.get('name')
 			cred.username = request.POST.get('username')
 			cred.password = request.POST.get('password')
@@ -49,6 +53,5 @@ def signup( request ):
 
 	else:
 		form = NewUser()
-
-	return render(request, 'userlogin/signup.html', {'form': form})
+		return render(request, 'userlogin/signup.html', {'form': form})
 

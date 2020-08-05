@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'userlogin/style.css' %}">
+
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+  
+	<form action="/home/signup/" method="post">
+	<div id="form-box" class="modal">
+		<div id="form-content" class="modal-content">
+
+      <div class="imgcontainer">
+
+          {% load static %}
+          <img src="{% static 'userlogin/avatar.png' %}" alt="avatar" class="avatar">  
+      </div>
+
+      <div style="color:red;"> Username already exist </div>
+			<div class="container">
+
+           		{% csrf_token %}
+            	{{ form }}
+      </div>
+      <div>
+        <button type="submit" style="font-size:22px"> Sign in </button>
+      </div>
+      
+    </div>
+  </div>
+  </form>
+
+</body>
