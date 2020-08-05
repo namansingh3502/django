@@ -1,0 +1,66 @@
+<style>
+	body {font-family: Arial, Helvetica, sans-serif;}
+
+	input[type=text], input[type=password] {
+  	width: 100%;
+  	padding: 12px 2px;
+  	margin: 8px 1px;
+  	display: inline-block;
+  	border: 2px solid #ccc;
+  	box-sizing: border-box;
+	}
+
+	button {
+  	background-color: #4CAF50;
+  	color: white;
+    margin-top: 10px;
+  	padding: 10px 20px;
+  	border: none;
+  	cursor: pointer;
+ 		width: 100%;
+	}
+
+	button:hover {
+  	opacity: 0.8;
+	}
+
+	.modal {
+  	position: fixed; /* Stay in place */
+  	z-index: 1; /* Sit on top */
+  	left: 0;
+  	top: 0;
+  	width: 100%; /* Full width */
+  	height: 100%; /* Full height */
+  	overflow: auto; /* Enable scroll if needed */
+  	padding-top: 5%;
+    padding-left: 25% ; 
+	}
+
+	.modal-content {
+  	background-color: #fefefe;
+    margin-top: 2%;
+    margin-left: 8%;
+ 		padding: 3% 3%;
+  	border: 1px solid #888;
+ 		height: auto;
+ 		width: 30%;
+ 		border-radius: 10px;
+	}
+
+	.container label{
+		font-size: 20px;
+		font-weight:bold;
+	}
+
+  .imgcontainer {
+    text-align: center;
+    margin: 20px 12px ;
+    position: relative;
+  }
+
+  img.avatar {
+    width: 40%;
+    border-radius: 10%;
+  }
+		
+	</style>
