@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'login/home.css' %}">
+
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+	<div id="box" class="modal">
+		<div id="box-content" class="modal-content">
+				
+				<div class="container" >
+				<span style ="font-size: 22px"> Login as  </span>
+
+				<div>
+					<form method="get" action="login/creator/" >
+					<button type="submit" ><strong>CREATOR</strong></button></form>
+					<form method="get" action="login/participant/">
+					<button type="submit" ><strong>PARTICIPANT</strong></button></form>
+				
+				<br>
+				<span style ="font-size: 22px"> New User </span>
+				<form method="get" action="{% url 'login:signup' %}">
+				<button type="submit" ><strong>Sign up</strong></button></form>
+				
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+</body>

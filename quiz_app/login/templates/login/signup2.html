@@ -1,8 +1,8 @@
-o<!DOCTYPE html>
+<!DOCTYPE html>
 
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'userlogin/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'login/style.css' %}">
 
 <head>
 
@@ -18,9 +18,10 @@ o<!DOCTYPE html>
       <div class="imgcontainer">
 
           {% load static %}
-          <img src="{% static 'userlogin/avatar.png' %}" alt="avatar" class="avatar">  
+          <img src="{% static 'login/avatar.png' %}" alt="avatar" class="avatar">  
       </div>
 
+      <div style="color:red;"> Username already exist </div>
 			<div class="container">
 
            		{% csrf_token %}
@@ -30,15 +31,6 @@ o<!DOCTYPE html>
         <button type="submit" style="font-size:22px"> Sign in </button>
       </div>
       
-      <br>
-      
-      <div><span style="font-size:18px" > New User </span>
-        <a href="{% url 'userlogin:signup' %}" style="font-size: 18px"> Create Account </a>
-        <br><br>
-        <a href="{% url 'userlogin:recpass' %}" style="font-size: 18px"> Forgot Password </a>
-      </div>
-      
-      </div>
     </div>
   </div>
   </form>
