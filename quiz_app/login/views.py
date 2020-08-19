@@ -76,6 +76,9 @@ def signup( request ):
 		else:
 			form = NewUser()
 			return render(request, 'login/signup.html', {'form': form})
-	else:
+	else: 
 		form = NewUser()
-		return render(request, 'login/signup.html', {'form': form})
+		return render(request, 'login/signup.html', {'form': form} )
+
+
+	

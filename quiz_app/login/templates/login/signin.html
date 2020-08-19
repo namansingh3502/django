@@ -1,15 +1,18 @@
-<!DOCTYPE html>
-
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'login/style.css' %}">
+<!DOCTYPE html>
 
 <head>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'login/css/style.css' %}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
+<script type="text/javascript" src="{% static 'login/js/signin.js' %}"></script>
+
 <body>
+ <p id="name">JavaScript can change HTML content.</p>
   
 	<form action="" method="post">
 	<div id="form-box" class="modal">
@@ -21,6 +24,7 @@
           <img src="{% static 'login/avatar.png' %}" alt="avatar" class="avatar">  
       </div>
 
+      
 			<div class="container">
 
            		{% csrf_token %}
@@ -42,5 +46,6 @@
     </div>
   </div>
   </form>
+
 
 </body>
