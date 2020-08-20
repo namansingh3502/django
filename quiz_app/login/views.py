@@ -7,7 +7,7 @@ from .forms import UserPass,NewUser
 def home( request ):
 	return render( request, 'login/home.html') 
 
-def signin( request, user_type ):
+def signin( request ):
 
 	if request.method == 'POST':
 		print(user_type)

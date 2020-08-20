@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
 {% load static %}
-
 <link rel="stylesheet" type="text/css" href="{% static 'login/css/home.css' %}">
+<script type="text/javascript" src="{% static 'login/js/home.js' %}"></script>
 
 <head>
 
@@ -14,24 +14,27 @@
 	<div id="box" class="modal">
 		<div id="box-content" class="modal-content">
 				
-				<div class="container" >
+			<div class="container" >
 				<span style ="font-size: 22px"> Login as  </span>
 
-				<div>
-					<form method="get" action="login/creator/" >
-					<button type="submit" ><strong>CREATOR</strong></button></form>
-					<form method="get" action="login/participant/">
-					<button type="submit" ><strong>PARTICIPANT</strong></button></form>
-				
-				<br>
+					<button onclick="login( 'creator' )">
+						<strong> CREATOR </strong>
+					</button>
+
+              	<button onclick="login( 'participant' )">
+              		<strong> PARTICIPANT </strong>
+              	</button>
+
+				<br><br>
+
 				<span style ="font-size: 22px"> New User </span>
-				<form method="get" action="{% url 'login:signup' %}">
-				<button type="submit" ><strong>Sign up</strong></button></form>
-				
-				</form>
+
+				<a href="new_user/">
+                    <button><strong>SIGNUP</strong></button>
+				</a>
+
 			</div>
 		</div>
 	</div>
-
 
 </body>

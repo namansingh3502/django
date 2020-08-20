@@ -1,37 +1,35 @@
+<!DOCTYPE html>
+
 {% load static %}
 
-<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="{% static 'login/css/style.css' %}">
+<script type="text/javascript" src="{% static 'login/js/signin.js' %}"></script>
 
 <head>
 
-<link rel="stylesheet" type="text/css" href="{% static 'login/css/style.css' %}">
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
-<script type="text/javascript" src="{% static 'login/js/signin.js' %}"></script>
-
 <body>
- <p id="name">JavaScript can change HTML content.</p>
-  
-	<form action="" method="post">
+	<form action="#" method="post">
 	<div id="form-box" class="modal">
 		<div id="form-content" class="modal-content">
 
       <div class="imgcontainer">
 
           {% load static %}
-          <img src="{% static 'login/avatar.png' %}" alt="avatar" class="avatar">  
+          <img src="{% static 'login/avatar.png' %}" alt="avatar" class="avatar">
+
       </div>
 
-      
 			<div class="container">
 
            		{% csrf_token %}
             	{{ form }}
       </div>
+
       <div>
-        <button type="submit" style="font-size:22px"> Sign in </button>
+        <button type="button" style="font-size:22px"> Sign in </button>
       </div>
       
       <br>
@@ -46,6 +44,7 @@
     </div>
   </div>
   </form>
+  <p id="demo">c</p>
 
 
 </body>

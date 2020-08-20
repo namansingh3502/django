@@ -12,8 +12,9 @@
 	}
 
 	button:hover {
-  	opacity: 0.8;
+    transform: scale(1.2);
 	}
+  
 	.modal {
   	position: fixed; /* Stay in place */
   	z-index: 1; /* Sit on top */

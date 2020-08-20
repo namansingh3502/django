@@ -1,1 +1,3 @@
-alert("Hello\nHow are you?");
+function fun(){
+	document.getElementById("demo").innerHTML = localStorage.getItem("user_type");
+}
