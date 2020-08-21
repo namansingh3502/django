@@ -2,18 +2,17 @@
 
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'login/css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'login/css/signin.css' %}">
 <script type="text/javascript" src="{% static 'login/js/signin.js' %}"></script>
 
 <head>
-
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 </head>
+
 <body>
-	<form action="#" method="post">
-	<div id="form-box" class="modal">
-		<div id="form-content" class="modal-content">
+
+	<div id="box" class="modal">
+		<div id="box-content" class="modal-content">
 
       <div class="imgcontainer">
 
@@ -29,7 +28,7 @@
       </div>
 
       <div>
-        <button type="button" style="font-size:22px"> Sign in </button>
+        <button onclick="login()"><strong> Sign in </strong></button>
       </div>
       
       <br>
@@ -43,8 +42,10 @@
       </div>
     </div>
   </div>
-  </form>
-  <p id="demo">c</p>
+  <p id="demo">naman</p>
 
-
+  <script type="text/javascript">
+    localStorage.setItem("user_type", "");
+    document.GetElementById("demo").innerHTML = localStorage.getItem("user_type");
+  </script>
 </body>
