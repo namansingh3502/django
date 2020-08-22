@@ -1,8 +1,10 @@
 from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
 from django.shortcuts import render,get_object_or_404
-from django.urls import reverse
 from .models import Creator,Participant
 from .forms import UserPass,NewUser
+from django.urls import reverse
+import secrets
+import string
 import json
 
 def home( request ):
@@ -13,7 +15,7 @@ def signin( request ):
 	if request.method == 'POST':
 		body_unicode = request.body.decode('utf-8')
 		body = json.loads(body_unicode)
-		print(body)
+		print(body.get('username'))
 
 		if form.is_valid():
 
