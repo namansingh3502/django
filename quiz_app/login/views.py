@@ -12,79 +12,79 @@ def home( request ):
 
 def signin( request ):
 
-	if request.method == 'POST':
-		body_unicode = request.body.decode('utf-8')
-		body = json.loads(body_unicode)
-		print(body.get('username'))
+	body_unicode = request.body.decode('utf-8')
+	body = json.loads(body_unicode)
+
+	user_type = body.get('user_type')
+
+	if ( user_type == "participant" or user_type == "creator" ) and request.method == 'POST':
+		
+		form = UserPass()
+		return render( request, 'login/signin.html', { 'form': form } )
+		
+		form = UserPass( body )
 
 		if form.is_valid():
 
-			user = request.POST.get('username')
-			user_pass = request.POST.get('password')
+			user = body.get('username')
+			password = body.get('password')
 
 			if user_type == "participant":
-				cred = Participant.objects.filter( username = user )
+				pk = get_object_or_404( Participant, username = user ).pk
 
-			else: cred = Creator.objects.filter( username = user )
-
-			if cred :
-				if cred[0].password == user_pass:
-					return HttpResponse( "Succesfully logged In " )
 			else:
-				form = UserPass()
-				return render( request, 'login/signin2.html', { 'form': form } )
+				pk = get_object_or_404( Creator, username = user ).pk
 
-		else:
-			form = UserPass()
-			return render( request, 'login/signin.html', { 'form': form } )
+			if (  )
 
-		return JsonResponse( data, safe = False )
 
-	else:
 
-		form = UserPass()
-		return render( request, 'login/signin.html', { 'form': form } )
+
 
 def signup( request ):
 
 	if request.method == 'POST':
-		print(request.POST)
-		form = NewUser( request.POST )
+		body_unicode = request.decode('utf-8')
+		body = json.loads(body_unicode)
+
+		form = UserPass( body )
 
 		if form.is_valid():
 
-			user = request.POST.get('username')
-			u_type = request.POST.get('user_type')
+			username = body.get('username')
 
-			status = 1;
+			if Participant.objects.filter( username = user ).exist() and Creator.objects.filter( username = user ).exist():
+				message = "Username already exist"
+				return JsonResponse({'status':'false','message':message}, status=404 )
 
-			if u_type == "participant" and Participant.objects.filter( username = user ).exists():
-				status = 0
-				return render(request, 'login/signup2.html', {'form': form})
+			user_type = body.get('user_type')
+			
+			if user_type == "participant":
+				cred = Participant()
+			else:
+				cred = Creator()
 
-			if u_type == "Creator" and Creator.objects.filter( username = user ).exists():
-				status = 0
-				return render(request, 'login/signup2.html', {'form': form})
+			alphabet = string.ascii_letters + string.digits
+			token = ''.join(secrets.choice(alphabet) for i in range( 16 ))
 
-			if status == 1:
-				if u_type == "participant":
-					cred = Participant()
-				else:
-					cred = Creator()
+			cred.name = body.get('name')
+			cred.username = username
+			cred.password = body.get('password')
+			cred.token = token
+			cred.save()
 
-
-				cred.name = request.POST.get('name')
-				cred.username = request.POST.get('username')
-				cred.password = request.POST.get('password')
-				cred.save()
-				return HttpResponseRedirect(reverse('login:home' ))
+			return HttpResponseRedirect(reverse('login:home'))
 
 		else:
 			form = NewUser()
-			return render(request, 'login/signup.html', {'form': form})
-	else: 
+			message = "Ooops! Some error occured. Check username/password"
+			return JsonResponse({'status':'false','message':message}, status=500 )
+
+	else:
 		form = NewUser()
-		return render(request, 'login/signup.html', {'form': form} )
+			return render(request, 'login/signup.html', {'form': form})
+
+
 
 
 	

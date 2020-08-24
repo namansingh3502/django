@@ -19,11 +19,16 @@ function login( num ){
  		mode: 'same-origin',		// Do not send CSRF token to another domain.
   		body: JSON.stringify(user)
 	})
-	.then(res => {
-        return res.json()
-    })
-    .then((response) => {
-        console.log('res: ' + response )
-    })
+	.then(response => {
+    if( !response.ok ){
+      console.log( alert("!Found") )
+    }
+    else console.log( alert("!Not  found") );
+
+    return response.text()
+  })
+  .then((text) => {
+    console.log( alert("Notfound") )
+  })
 
 }
