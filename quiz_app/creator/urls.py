@@ -6,5 +6,6 @@ app_name = 'creator'
 urlpatterns = [
 	
 	path( 'dashboard/', views.dashboard, name = "dashboard" ),
+	#path( 'profile/', views.profile, name = "profile" ),
 
 ]

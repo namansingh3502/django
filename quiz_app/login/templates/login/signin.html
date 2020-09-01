@@ -18,9 +18,9 @@
 
           {% load static %}
           <img src="{% static 'login/avatar.png' %}" alt="avatar" class="avatar">
-
       </div>
 
+      <span style="font-size:16px" > <div id = "msg" ></div></span>
 			<div class="container">
 
            		{% csrf_token %}
@@ -30,7 +30,7 @@
       <div>
         <button onclick="login()"><strong> Sign in </strong></button>
       </div>
-      
+
       <br>
       
       <div><span style="font-size:18px" > New User </span>

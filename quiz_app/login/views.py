@@ -12,15 +12,9 @@ def home( request ):
 
 def signin( request ):
 
-	body_unicode = request.body.decode('utf-8')
-	body = json.loads(body_unicode)
-
-	user_type = body.get('user_type')
-
-	if ( user_type == "participant" or user_type == "creator" ) and request.method == 'POST':
-		
-		form = UserPass()
-		return render( request, 'login/signin.html', { 'form': form } )
+	if request.method == 'POST':
+		body_unicode = request.body.decode('utf-8')
+		body = json.loads(body_unicode)
 		
 		form = UserPass( body )
 
@@ -28,32 +22,42 @@ def signin( request ):
 
 			user = body.get('username')
 			password = body.get('password')
+			user_type = body.get('user_type')
+
 
 			if user_type == "participant":
-				pk = get_object_or_404( Participant, username = user ).pk
+				cred = get_object_or_404( Participant, username = user )
 
 			else:
-				pk = get_object_or_404( Creator, username = user ).pk
+				cred = get_object_or_404( Creator, username = user )
 
-			if (  )
+			if password == cred.password:
+				token = cred.token 
+				return JsonResponse({'status':'false','token':token}, status=200 )
 
+			else:
+				return JsonResponse({'status':'false'}, status=404 )
 
+		else:
+			return JsonResponse({'status':'false'}, status=404 )
 
-
+	else:
+		form = UserPass()
+		return render( request, 'login/signin.html', { 'form': form } )
 
 def signup( request ):
 
 	if request.method == 'POST':
-		body_unicode = request.decode('utf-8')
+		body_unicode = request.body.decode('utf-8')
 		body = json.loads(body_unicode)
-
-		form = UserPass( body )
+		
+		form = NewUser( body )
 
 		if form.is_valid():
 
-			username = body.get('username')
+			user = body.get('username')
 
-			if Participant.objects.filter( username = user ).exist() and Creator.objects.filter( username = user ).exist():
+			if Participant.objects.filter( username = user ).exists() or Creator.objects.filter( username = user ).exists():
 				message = "Username already exist"
 				return JsonResponse({'status':'false','message':message}, status=404 )
 
@@ -65,15 +69,15 @@ def signup( request ):
 				cred = Creator()
 
 			alphabet = string.ascii_letters + string.digits
-			token = ''.join(secrets.choice(alphabet) for i in range( 16 ))
+			token = ''.join(secrets.choice(alphabet) for i in range( 32 ))
 
 			cred.name = body.get('name')
-			cred.username = username
+			cred.username = user
 			cred.password = body.get('password')
 			cred.token = token
 			cred.save()
 
-			return HttpResponseRedirect(reverse('login:home'))
+			return JsonResponse({'status':'false'}, status=200 )
 
 		else:
 			form = NewUser()
@@ -82,7 +86,7 @@ def signup( request ):
 
 	else:
 		form = NewUser()
-			return render(request, 'login/signup.html', {'form': form})
+		return render(request, 'login/signup.html', {'form': form})
 
 
 

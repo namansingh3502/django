@@ -15,20 +15,24 @@ function login( num ){
 	};
 
 	let response = fetch( request , {
- 		method: 'POST',
- 		mode: 'same-origin',		// Do not send CSRF token to another domain.
+      method: 'POST',
+      mode: 'same-origin',		// Do not send CSRF token to another domain.
   		body: JSON.stringify(user)
 	})
 	.then(response => {
-    if( !response.ok ){
-      console.log( alert("!Found") )
+
+    if( response.ok ){
+      //obj = JSON.parse(response.text());
+      //console.log('response:' + obj.token )
+      check(response.text()) 
     }
-    else console.log( alert("!Not  found") );
-
-    return response.text()
+    else{
+      document.getElementById("msg").innerHTML = "Username or password is incorrect";
+    }
   })
-  .then((text) => {
-    console.log( alert("Notfound") )
-  })
+}
 
+function check (text){
+    obj = JSON.parse(text);
+  console.log('response:' + text )
 }

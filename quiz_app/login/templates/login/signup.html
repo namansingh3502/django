@@ -2,18 +2,17 @@
 
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'login/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'login/css/signin.css' %}">
+<script type="text/javascript" src="{% static 'login/js/signup.js' %}"></script>
 
 <head>
-
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 </head>
+
 <body>
   
-	<form action="" method="post">
-	<div id="form-box" class="modal">
-		<div id="form-content" class="modal-content">
+	<div id="box" class="modal">
+		<div id="box-content" class="modal-content">
 
       <div class="imgcontainer">
 
@@ -21,6 +20,7 @@
           <img src="{% static 'login/avatar.png' %}" alt="avatar" class="avatar">  
       </div>
 
+      <p id="msg"></p>
 			
       <div class="container">
 
@@ -28,11 +28,9 @@
             	{{ form }}
       </div>
       <div>
-        <button type="submit" style="font-size:22px"> Sign in </button>
-      </div>
-      
+        <button onclick="signup()"><strong> Sign up </strong></button>
+      </div>  
     </div>
   </div>
-  </form>
 
 </body>
