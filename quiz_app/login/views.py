@@ -32,8 +32,8 @@ def signin( request ):
 				cred = get_object_or_404( Creator, username = user )
 
 			if password == cred.password:
-				token = cred.token 
-				return JsonResponse({'status':'false','token':token}, status=200 )
+				token = cred.token
+				return JsonResponse({'token':token}, status=200 )
 
 			else:
 				return JsonResponse({'status':'false'}, status=404 )
