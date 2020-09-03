@@ -7,40 +7,41 @@ import secrets
 import string
 import json
 
-def home( request ):
-	return render( request, 'login/home.html') 
-
 def signin( request ):
 
 	if request.method == 'POST':
 		body_unicode = request.body.decode('utf-8')
 		body = json.loads(body_unicode)
-		
+
 		form = UserPass( body )
 
 		if form.is_valid():
+
 
 			user = body.get('username')
 			password = body.get('password')
 			user_type = body.get('user_type')
 
+			if user_type == "participant" and Participant.objects.filter( username = user ).exists():
+				cred = Participant.objects.filter( username = user )
 
-			if user_type == "participant":
-				cred = get_object_or_404( Participant, username = user )
+			elif user_type == "creator" and Creator.objects.filter( username = user ).exists():
+				cred = Creator.objects.filter( username = user )
+			
+			else:
+				return JsonResponse({'status':False}, status=404 )
+
+			if password == cred[0].password:
+				token = cred[0].token
+				pk = cred[0].pk
+				return JsonResponse({'status':True,'token':token,'pk':pk}, status=200 )
 
 			else:
-				cred = get_object_or_404( Creator, username = user )
-
-			if password == cred.password:
-				token = cred.token
-				return JsonResponse({'token':token}, status=200 )
-
-			else:
-				return JsonResponse({'status':'false'}, status=404 )
+				return JsonResponse({'status':False}, status=404 )
 
 		else:
-			return JsonResponse({'status':'false'}, status=404 )
-
+			return JsonResponse({'status':False}, status=404 )
+	
 	else:
 		form = UserPass()
 		return render( request, 'login/signin.html', { 'form': form } )
@@ -56,17 +57,18 @@ def signup( request ):
 		if form.is_valid():
 
 			user = body.get('username')
-
-			if Participant.objects.filter( username = user ).exists() or Creator.objects.filter( username = user ).exists():
-				message = "Username already exist"
-				return JsonResponse({'status':'false','message':message}, status=404 )
-
 			user_type = body.get('user_type')
 			
 			if user_type == "participant":
-				cred = Participant()
+				if Participant.objects.filter( username = user ).exists():
+					return JsonResponse({'status':'false'}, status=404 )
+				else:
+					cred = Participant()
 			else:
-				cred = Creator()
+				if Cred.objects.filter( username = user ).exists():
+					return JsonResponse({'status':'false'}, status=404 )
+				else:
+					cred = Creator()
 
 			alphabet = string.ascii_letters + string.digits
 			token = ''.join(secrets.choice(alphabet) for i in range( 32 ))
@@ -77,12 +79,11 @@ def signup( request ):
 			cred.token = token
 			cred.save()
 
-			return JsonResponse({'status':'false'}, status=200 )
+			return JsonResponse({'status':True}, status=200 )
 
 		else:
 			form = NewUser()
-			message = "Ooops! Some error occured. Check username/password"
-			return JsonResponse({'status':'false','message':message}, status=500 )
+			return JsonResponse({'status':'false'}, status=404 )
 
 	else:
 		form = NewUser()

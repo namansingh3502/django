@@ -20,13 +20,20 @@ function signup( ){
  		  mode: 'same-origin',		// Do not send CSRF token to another domain.
   	  body: JSON.stringify(user)
 	})
-	.then(response => {
+	.then(json => json.json())
+  .then(function (data) {
 
-    check( response.text() );
-    
+    if( data.status == true){
+      console.log("success")
+      
+      window.location.href = "/";
+
+    }
+    else{
+      document.getElementById("msg").innerHTML = "Username already exist";
+    }
   })
-}
-
-function check(txt) {
-  document.getElementById("msg").innerHTML = txt.message;
+  .catch(function (error) {
+    console.log('Request failed', error);
+  });
 }
