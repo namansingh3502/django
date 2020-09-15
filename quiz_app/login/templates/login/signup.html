@@ -2,8 +2,8 @@
 
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/static/css/login/signin.css">
-<script type="text/javascript" src="http://localhost:8080/static/js/login/signup.js"></script>
+<link rel="stylesheet" type="text/css" href="http://localhost:8000/static/css/login/signin.css">
+<script type="text/javascript" src="http://localhost:8000/static/js/login/signup.js"></script>
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,13 +11,13 @@
 
 <body>
   
-	<div id="box" class="modal">
+	<div id="box" class="modal" style="display: block;">
 		<div id="box-content" class="modal-content">
 
       <div class="imgcontainer">
 
           {% load static %}
-          <img src="http://localhost:8080/static/images/common/avatar.png" alt="avatar" class="avatar">  
+          <img src="http://localhost:8000/static/images/common/avatar.png" alt="avatar" class="avatar">  
       </div>
 
       <span style="font-size:18px; color:red; font-weight:bold;" > <div id = "msg" ></div></span>

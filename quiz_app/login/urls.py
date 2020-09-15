@@ -9,6 +9,6 @@ urlpatterns = [
 		
 	path( 'new_user/', views.signup, name = 'signup' ),
 	
-	path( 'recpass/', views.signin, name = "recpass")
+	path( 'recpass/', views.signin, name = "recpass"),
 	
 ]
