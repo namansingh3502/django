@@ -38,9 +38,7 @@ function login(){
       localStorage.setItem("user_token", data.token);
       localStorage.setItem("user_type", document.querySelector('[name=user_type]').value);
 
-      console.log(data);
-
-      window.location.href = document.querySelector('[name=user_type]').value + "/login/" + username + "/" + data.token;
+      window.location.href = document.querySelector('[name=user_type]').value + "/" +username;
 
     }
     else{

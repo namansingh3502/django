@@ -6,7 +6,7 @@ import secrets
 import string
 import json
 
-def user_verification( request, username, token ):
+def dashboard( request, username ):
 
-	return HttpResponse ( "hello  " + username )
+	return render( request, 'common/dashboard.html')
 

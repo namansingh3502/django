@@ -5,7 +5,7 @@ function check(){
         user_token = localStorage.getItem("user_token");
 
     if( username  && user_token ){
-        window.location.href = user_type + "/login/" + username + "/" + user_token;
+        window.location.href = user_type + "/" + username ;
     }
     else {
     	document.getElementById("box").style.display = "block";
