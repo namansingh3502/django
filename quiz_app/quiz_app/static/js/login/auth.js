@@ -8,6 +8,6 @@ function check(){
         window.location.href = user_type + "/" + username ;
     }
     else {
-    	document.getElementById("box").style.display = "block";
+    	document.getElementById("box-content").style.display = "block";
     }
 }

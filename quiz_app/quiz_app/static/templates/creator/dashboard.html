@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>Quiz App</title>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="http://localhost:8000/static/css/common/dashboard.css">
+<script type="text/javascript" src="http://localhost:8000/static/js/login/dashboard.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+
+</head>
+
+<body style="background-color:lightgray" onload="dashboard()">
+
+	<div class="header">
+		<h1> Quiz App </h1>
+	</div>
+
+	<div class="navbar">
+		<a href="#"> Home </a>
+		<a href="#"> Archive </a>
+		<a href="#"> Profile </a>
+		<a href="#"><i class='fas fa-pen-nib'></i></a>
+		<a href="#" class="right"> Signout </a>
+	</div>
+
+	<div class="row">
+		<div class="card">
+			<div class="imgcontainer">
+				{% load static %}
+				<img src="http://localhost:8000/static/images/common/avatar.png" alt="avatar" class="avatar">
+			</div>
+			<div>
+				
+			</div>
+		</div>
+
+		<div class="modal">
+			<div class="content">
+
+			<h3> Upcoming Quiz </h3>
+			<div class="table">
+			<table id="table">
+				<tr>
+					<th>Topic</th>
+					<th>Level</th>
+					<th>Total Question</th>
+					<th>Start Time</th>
+					<th>End Time</th>
+					<th>Edit</th>
+				</tr>
+				<tr>
+    			
+			</table>
+		</div>
+
+		<h3> Completed Quiz This Month </h3>
+			<div class="table">
+			<table id="table">
+				<tr>
+					<th>Topic</th>
+					<th>Level</th>
+					<th>Total Question</th>
+					<th>Start Time</th>
+					<th>End Time</th>
+				</tr>
+				<tr>
+    			
+			</table>
+		</div>
+
+			<div>
+				
+			</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+</body>
+

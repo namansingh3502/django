@@ -1,86 +1,182 @@
 <style>
-	body {
-		font-family: Arial, Helvetica, sans-serif;
-	}
-
-	.topnav {
-  	overflow: hidden;
-  	background-color: #333;
-	}
-
-	.topnav a {
-  	float: left;
-  	color: #f2f2f2;
-  	text-align: center;
-  	padding: 14px 16px;
-  	text-decoration: none;
-  	font-size: 17px;
-	}
-
-	.topnav a:hover {
-  	background-color: #ddd;
-  	color: black;
-	}
-
-	.topnav a.active {
-  	background-color: #4CAF50;
-  	color: white;
-	}
-	2
-	.modal {
-    display: none;
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    padding-left: 25% ;
-    margin-left: 200px;
+  body { font-family: Arial, Helvetica, sans-serif;
+  }
+  * {
+    box-sizing: border-box;
   }
 
-  .modal-content {
-  	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
-    margin-top: 2%;
-    border: 1px solid rgba(0,0,1,0.2);
-    height: auto;
-    min-height: 500px;
-    width:50px;
+  .header {
+    padding: 60px;
+    margin-left: 15%;
+    margin-right: 15%;
+    text-align: center;
+    background: #1abc9c;
+    color: white;
+    vertical-align: center;
   }
 
-  .container label{
+  .header h1 {
+    font-size: 50px;
+  }
 
+  .navbar {
     font-size: 20px;
-    font-weight:bold;
+    overflow: hidden;
+    margin-left: 15%;
+    margin-right: 15%;
+    text-align: center;
+    background-color: #333;
+  }
+
+  /* Style the navigation bar links */
+  .navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    width: %;
+  }
+
+  /* Right-aligned link */
+  .navbar a.right {
+    float: right;
+  }
+
+  /* Change color on hover */
+  .navbar a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  .row {  
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 15px;
   }
 
   .card {
-  	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  	background-color: whitesmoke;
-  	transition: 0.3s;
-  	width: 250px;
-  	height: 300px;
-	}
+    -ms-flex: 25%; /* IE10 */
+    flex: 25%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: whitesmoke;
+    transition: 0.3s;
+    height: 400px;
+    min-height: 350px;
+  }
 
-	.card:hover {
-  	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-	}
+  .imgcontainer {
+    text-align: center;
+    position: relative;
+  }
 
-	.container {
-  	padding: 2px 16px;
-	}
-	.column {
-		margin-left: 30px;
-		margin-top: 30px;
-  	padding: 10px;
-  	height: 300px; /* Should be removed. Only for demonstration */
-	}
-	* {
-  	box-sizing: border-box;
-	}
+  img.avatar {
+    width: 50%;
+    border-radius: 10%;
+    padding-top: 30px;
+  }
 
-	.row {
-  	display: flex;
-	}
-</style>
+  .modal {
+    -ms-flex: 75%; /* IE10 */
+    flex: 75%;
+    padding-left: 20px;
+  }
+  .content{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+    border: 1px solid rgba(0,0,1,0.2);
+    height: 1100px;
+    width: 100%;
+    background-color: whitesmoke;
+    box-sizing: content-box;
+  }
+
+  .new_quiz p {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0px;
+    margin: 15px;
+  }
+
+  button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 3%;
+    font-size:18px;
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+  }
+
+  button:hover {
+    opacity: 0.8;
+  }
+
+  .content h3 {
+    font-size: 26px;
+    text-align: center;
+    background-color: darkgray;
+    padding: 1% 10%;
+    margin-left: 15%;
+    margin-right: 15%;
+    
+  }
+
+  .table{
+    height: 400px;
+    overflow-y: scroll;
+    width: 98%;
+    border-style: box;
+    border: 1px solid rgba(0,0,1,0.7);
+    margin-left: 8px;
+    margin-right: 5px;
+    background-color: rgba(169,169,169,0.2);
+  }
+
+  #table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    align-items: center;
+    width: 100%;
+    background-color: #ffffffb0;
+  }
+
+  #table td, #table th {
+    border: 1px solid rgba(0,0,0,0.7);
+    word-break: keep-all;
+    text-align: center;
+    font-size: 18px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  #table tr:nth-child(even) {
+    background-color: #bdbdbd;
+  }
+
+  #table tr:hover {
+    background-color: #ddd;
+  }
+
+  #table th {
+    position: sticky; top: 0;
+    padding: 8px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+
+
+
+
+
+
+
+
+
+

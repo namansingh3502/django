@@ -8,5 +8,5 @@ import json
 
 def dashboard( request, username ):
 
-	return render( request, 'common/dashboard.html')
+	return render( request, 'creator/dashboard.html')
 
